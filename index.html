@@ -39,16 +39,16 @@
 <script>
 
 //    document.all[10].innerHTML="Rat"
-    let title = document.getElementById("header-title");
-    title.innerHTML = "Hello"
+    // let title = document.getElementById("header-title");
+    // title.innerHTML = "Hello"
 
-    let header = document.getElementById("main-header");
-    header.style.borderBottom=" 5px solid black"
+    // let header = document.getElementById("main-header");
+    // header.style.borderBottom=" 5px solid black"
 
-    let addItem = document.getElementById("add");
-    // add.innerHTML="rat"
-    addItem.style.fontWeight="bold"
-    addItem.style.color='green'
+    // let addItem = document.getElementById("add");
+    // // add.innerHTML="rat"
+    // addItem.style.fontWeight="bold"
+    // addItem.style.color='green'
 
 
     // // Make the 3 rd element in the list have green background color
@@ -71,16 +71,29 @@
     // Make the 3 rd element in the list have green background color
     // And try editing it with  by getelementbytagname
 
-    let li = document.getElementsByTagName("li");
-    li[2].style.background = "green"
-    // console.log(items[])
+    // let li = document.getElementsByTagName("li");
+    // li[2].style.background = "green"
+    // // console.log(items[])
 
-    // Make all the elements in the list have bold color font
+    // // Make all the elements in the list have bold color font
 
-        for (let i = 0; i < li.length; i++) {
-            li[i].style.fontWeight="bold"
-            li[i].style.color="red"
+    //     for (let i = 0; i < li.length; i++) {
+    //         li[i].style.fontWeight="bold"
+    //         li[i].style.color="red"
             
-        }
+    //     }
+
+
+    //Make the 2nd item have green background color
+
+    let items = document.querySelector(`li:nth-child(2)`)
+
+    items.style.background = "green"
+
+    //Make the 3rd item invisible
+
+    let trdItem = document.querySelector(`li:nth-child(3)`);
+    trdItem.style.color="transparent"
+
 </script>
 </html>
