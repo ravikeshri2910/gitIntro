@@ -29,7 +29,7 @@
 
       <!-- Add a new li element without the same class Name -->
 
-      <li>Item 5</li>
+      <!-- <li>Item 5</li> -->
     </ul>
    </div>
   </div>
@@ -86,14 +86,31 @@
 
     //Make the 2nd item have green background color
 
-    let items = document.querySelector(`li:nth-child(2)`)
+    // let items = document.querySelector(`li:nth-child(2)`)
 
-    items.style.background = "green"
+    // items.style.background = "green"
 
-    //Make the 3rd item invisible
+    // //Make the 3rd item invisible
 
-    let trdItem = document.querySelector(`li:nth-child(3)`);
-    trdItem.style.color="transparent"
+    // let trdItem = document.querySelector(`li:nth-child(3)`);
+    // trdItem.style.color="transparent"
+
+    //Using QuerySelectorALL change the 
+    //font color to green for 2nd item in the item list
+
+    let items = document.querySelectorAll(".list-group-item")
+            // console.log(items)
+    items[1].style.color = "green"
+
+    // Choose all the odd elements and make their background green using QuerySelectorALL﻿
+
+    let odd = document.querySelectorAll(`li:nth-child(odd)`)
+    for (let i = 0; i < odd.length; i++) {
+        odd[i].style.background='green';
+        
+    }
+
+
 
 </script>
 </html>
