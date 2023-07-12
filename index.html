@@ -22,6 +22,7 @@
     </form>
     <h2 class="title">Items</h2>
     <ul id="items" class="list-group">
+        <p id="p"></p>
       <li class="list-group-item">Item 1</li>
       <li class="list-group-item">Item 2</li>
       <li class="list-group-item">Item 3</li>
@@ -31,6 +32,7 @@
 
       <!-- <li>Item 5</li> -->
     </ul>
+    <h1>nextElementSibling</h1>
    </div>
   </div>
 
@@ -98,19 +100,49 @@
     //Using QuerySelectorALL change the 
     //font color to green for 2nd item in the item list
 
-    let items = document.querySelectorAll(".list-group-item")
-            // console.log(items)
-    items[1].style.color = "green"
+    // let items = document.querySelectorAll(".list-group-item")
+    //         // console.log(items)
+    // items[1].style.color = "green"
 
-    // Choose all the odd elements and make their background green using QuerySelectorALL﻿
+    // // Choose all the odd elements and make their background green using QuerySelectorALL﻿
 
-    let odd = document.querySelectorAll(`li:nth-child(odd)`)
-    for (let i = 0; i < odd.length; i++) {
-        odd[i].style.background='green';
+    // let odd = document.querySelectorAll(`li:nth-child(odd)`)
+    // for (let i = 0; i < odd.length; i++) {
+    //     odd[i].style.background='green';
         
-    }
+    // }
+
+    let items = document.querySelector("#items")
 
 
+        // console.log(items.parentElement)
+        // console.log(items.lastElementChild)
+        // console.log(items.lastChild)
+        // console.log(items.firstElementChild)
+        // console.log(items.firstChild)
+        // console.log(items.nextSibling)
+        // console.log(items.nextElementSibling)
+        // console.log(items.previousSibling)
+        // console.log(items.previousElementSibling)
 
+        let div =   document.createElement("div")
+        let head = document.querySelector('.container')
+        let p = document.querySelector("#p")
+        p.innerText="hello"
+        console.log(p)
+        let upItem = document.querySelector('.title')
+        div.className=("new-div")
+        div.id="new-id"
+        let text = document.createTextNode("New div")
+        div.appendChild(text)
+        head.appendChild(div)
+        let hi = document.querySelector('#header-title')
+        let item1 = document.querySelector("#items")
+        let newDiv = document.createElement('div')
+        newDiv.innerText = 'Hello'
+        // p.appendChild(newDiv)
+        // upItem.appendChild(newDiv)
+        head.insertBefore(newDiv,hi)
+        console.log(newDiv)
 </script>
 </html>
