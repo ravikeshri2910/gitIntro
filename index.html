@@ -46,7 +46,19 @@
     addItem.style.fontWeight="bold"
     addItem.style.color='green'
 
+
+    // Make the 3 rd element in the list have green background color
+
     let items = document.getElementsByClassName("list-group-item");
-    // console.log(items[3])
+    items[2].style.background = "green"
+    // console.log(items[])
+
+    // Make all the elements in the list have bold color font
+
+        for (let i = 0; i < items.length; i++) {
+            items[i].style.fontWeight="bold"
+            items[i].style.color="red"
+            
+        }
 </script>
 </html>
