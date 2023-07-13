@@ -126,19 +126,23 @@ header {
             let email = document.getElementById("email");
            
 
-            // let myObj={
+            let myObj={
 
-            //     name:name.value,
-            //     email:email.value
-            // };
+                name:name.value,
+                email:email.value
+            };
 
-            // let str_myObj = JSON.stringify(myObj);
+            let str_myObj = JSON.stringify(myObj);
 
             // set in local storage
          
-                localStorage.setItem("name",name.value)
-                localStorage.setItem("email",email.value)
-          
+                localStorage.setItem("Detail",str_myObj)
+                // localStorage.setItem(emailKey,email.value)
+            
+            // get item from local storage
+
+            let output = JSON.parse(localStorage.getItem("Detail"));
+            console.log(output)
             }
 
 
