@@ -6,83 +6,104 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>JS For Beginners</title>
     <style>
-        * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
-}
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+      }
 
-ul {
-  list-style: none;
-}
+      ul {
+        list-style: none;
+      }
 
-ul li {
-  padding: 5px;
-  background: #f4f4f4;
-  margin: 5px 0;
-}
+      ul li {
+        padding: 5px;
+        background: #f4f4f4;
+        margin: 5px 0;
+      }
 
-header {
-  background: #f4f4f4;
-  padding: 1rem;
-  text-align: center;
-}
+      header {
+        background: #f4f4f4;
+        padding: 1rem;
+        text-align: center;
+      }
 
-.container {
-  margin: auto;
-  width: 500px;
-  overflow: auto;
-  padding: 3rem 2rem;
-}
+      .container {
+        margin: auto;
+        width: 500px;
+        overflow: auto;
+        padding: 3rem 2rem;
+      }
 
-#my-form {
-  padding: 2rem;
-  background: #f4f4f4;
-}
+      #my-form {
+        padding: 2rem;
+        background: #f4f4f4;
+      }
 
-#my-form label {
-  display: block;
-}
+      #my-form label {
+        display: block;
+      }
 
-#my-form input[type='text'] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
+      #my-form input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
 
-.btn {
-  display: block;
-  width: 100%;
-  padding: 10px 15px;
-  border: 0;
-  background: #333;
-  color: #fff;
-  border-radius: 5px;
-  margin: 5px 0;
-}
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 10px 15px;
+        border: 0;
+        background: #333;
+        color: #fff;
+        border-radius: 5px;
+        margin: 5px 0;
+      }
 
-.btn:hover {
-  background: #444;
-}
+      .btnDel {
+        cursor: pointer;
+        display: grid;
+        width: 10%;
+        padding: 10px 15px;
+        border: 0;
+        background: red;
+        color: #fff;
+        border-radius: 5px;
+        margin: 5px 0;
+      }
 
-.bg-dark {
-  background: #333;
-  color: #fff;
-}
+      .btnDel:hover {
+        background: #444;
+      }
+      .btn:hover {
+        background: #444;
+      }
 
-.error {
-  background: orangered;
-  color: #fff;
-  padding: 5px;
-  margin: 5px;
-}
+      .bg-dark {
+        background: #333;
+        color: #fff;
+      }
+
+      .error {
+        background: orangered;
+        color: #fff;
+        padding: 5px;
+        margin: 5px;
+      }
+
+      .item {
+        /* display: grid; */
+        justify-content: center;
+        /* border: 2px solid black; */
+      }
     </style>
     <!-- <link rel="stylesheet" href="style.css"> -->
   </head>
@@ -97,61 +118,81 @@ header {
         <div class="msg"></div>
         <div>
           <label for="name">Name:</label>
-          <input type="text" id="name">
+          <input type="text" id="name" />
         </div>
         <div>
           <label for="email">Email:</label>
-          <input type="text" id="email">
+          <input type="text" id="email" />
         </div>
-        <input id="submit" class="btn" type="submit" value="Submit">
+        <input id="submit" class="btn" type="submit" value="Submit" />
       </form>
 
       <ul id="users"></ul>
 
-      <!-- <ul class="items">
-        <li class="item">Item 1</li>
-        <li class="item">Item 2</li>
+      <!-- <ul class="items"> -->
+      <!-- <li class="item">Item 1</li><button class="btnDel">X</button> -->
+      <!-- <li class="item">Item 2</li>
         <li class="item">Item 3</li>
       </ul> -->
     </section>
-    
+
     <script>
+      let submit = document.getElementById("submit");
+      submit.addEventListener("click", inLocalStorage);
 
-        let submit = document.getElementById("submit");
-        submit.addEventListener("click",inLocalStorage);
-        
-        
-        function inLocalStorage(event){
-            event.preventDefault()
-            let name = document.getElementById("name");
-            let email = document.getElementById("email");
-            
-            // Showing users details into Dom
-            let ul = document.getElementById("users");
-            let div = document.createElement("div");
-            div.innerHTML = `<li class="item">Name : ${name.value}, Email: ${email.value}</li>`
-            ul.appendChild(div)
+      // let del = document.getElementById("delete");
+      // del.addEventListener("click",deleteLocaltorage);
 
-            let myObj={
+     
 
-                name:name.value,
-                email:email.value
-            };
+      function inLocalStorage(event) {
+        event.preventDefault();
+        let name = document.getElementById("name");
+        let email = document.getElementById("email");
 
-            let str_myObj = JSON.stringify(myObj);
-            let key = email.value;
-            // set in local storage
-         
-                localStorage.setItem(key,str_myObj)
-                // localStorage.setItem(emailKey,email.value)
-            
-            // get item from local storage
+        // Showing users details into Dom
 
-            let output = JSON.parse(localStorage.getItem("Detail"));
-            console.log(output)
-            }
+        let myObj = {
+          name: name.value,
+          email: email.value,
+        };
+        let ul = document.getElementById("users");
+        let div = document.createElement("div");
+        div.className = "delDiv";
+        div.innerHTML = `<li class="item">Name : ${myObj.name},${myObj.email}<button onClick="deleteLocaltorage(event)" class="btnDel">,x</button></li>`;
+        ul.appendChild(div);
+
+        let str_myObj = JSON.stringify(myObj);
+        let key = email.value;
+        // set in local storage
+
+        localStorage.setItem(key, str_myObj);
+        // localStorage.setItem(emailKey,email.value)
+
+        // get item from local storage
+
+        let output = JSON.parse(localStorage.getItem("Detail"));
+        console.log(output);
+      }
 
 
+      function deleteLocaltorage(event) {
+        event.preventDefault();
+        event.target.parentNode.remove();
+        let text = event.target.parentNode.textContent
+        let arr = text.split(",");
+        let key = arr[1]
+        // console.log(typeof(key))
+        // console.log(key)
+        // console.log(obj)
+        // let name = document.getElementById("name");
+        // let email = document.getElementById("email");
+
+        localStorage.removeItem(key)
+        // if(email.value == )
+
+       
+      }
     </script>
     <!-- <script src="main.js"></script> -->
   </body>
