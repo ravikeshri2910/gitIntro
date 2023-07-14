@@ -104,6 +104,18 @@
         justify-content: center;
         /* border: 2px solid black; */
       }
+
+      .btnEdit{
+        cursor: pointer;
+        display: grid;
+        width: 10%;
+        padding: 10px 15px;
+        border: 0;
+        background: green;
+        color: #fff;
+        border-radius: 5px;
+        margin: 5px 0;
+      }
     </style>
     <!-- <link rel="stylesheet" href="style.css"> -->
   </head>
@@ -159,7 +171,7 @@
         let ul = document.getElementById("users");
         let div = document.createElement("div");
         div.className = "delDiv";
-        div.innerHTML = `<li class="item">Name : ${myObj.name},${myObj.email}<button onClick="deleteLocaltorage(event)" class="btnDel">,x</button></li>`;
+        div.innerHTML = `<li class="item">${myObj.name},${myObj.email}<button onClick="deleteLocaltorage(event)" class="btnDel">,x</button><button onClick="editLocaltorage(event)" class="btnEdit">Edit</button></li>`;
         ul.appendChild(div);
 
         let str_myObj = JSON.stringify(myObj);
@@ -182,16 +194,29 @@
         let text = event.target.parentNode.textContent
         let arr = text.split(",");
         let key = arr[1]
-        // console.log(typeof(key))
-        // console.log(key)
-        // console.log(obj)
-        // let name = document.getElementById("name");
-        // let email = document.getElementById("email");
 
         localStorage.removeItem(key)
         // if(email.value == )
 
        
+      }
+
+      function editLocaltorage(event){
+        event.preventDefault();
+        let name = document.getElementById("name");
+        let email = document.getElementById("email");
+        name.value="";
+        email.value="";
+        let text = event.target.parentNode.textContent
+        let arr = text.split(",")
+
+        name.value=arr[0];
+        email.value=arr[1]
+        let key = arr[1]
+        localStorage.removeItem(key)
+        event.target.parentNode.remove();
+
+        // console.log(arr)
       }
     </script>
     <!-- <script src="main.js"></script> -->
