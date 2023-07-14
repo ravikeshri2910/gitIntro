@@ -120,11 +120,17 @@ header {
         let submit = document.getElementById("submit");
         submit.addEventListener("click",inLocalStorage);
         
+        
         function inLocalStorage(event){
             event.preventDefault()
             let name = document.getElementById("name");
             let email = document.getElementById("email");
-           
+            
+            // Showing users details into Dom
+            let ul = document.getElementById("users");
+            let div = document.createElement("div");
+            div.innerHTML = `<li class="item">Name : ${name.value}, Email: ${email.value}</li>`
+            ul.appendChild(div)
 
             let myObj={
 
@@ -133,10 +139,10 @@ header {
             };
 
             let str_myObj = JSON.stringify(myObj);
-
+            let key = email.value;
             // set in local storage
          
-                localStorage.setItem("Detail",str_myObj)
+                localStorage.setItem(key,str_myObj)
                 // localStorage.setItem(emailKey,email.value)
             
             // get item from local storage
