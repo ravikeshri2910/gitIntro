@@ -121,7 +121,8 @@
 
       </div>
       
-      <button class="rat" type="submit" onclick="submit(event)">Submit</button>
+      <!-- <button id="submit" class="rat" type="submit" onclick="submit(event)">Submit</button> -->
+      <button id="submit" class="rat" type="submit" >Submit</button>
  
       <div class="list" id="list">
           <!-- <li class="list-group-item" id="li">Dapibus ac facilisis in</li>
@@ -154,7 +155,11 @@
   <script>
 
     // Submitting the details into DOM and localstorage
-      function submit(event) {
+
+    let button = document.getElementById("submit");
+    button.addEventListener("click",submit)
+    function submit(event){
+        console.log("h")
           event.preventDefault();
           let expense = document.getElementById("expense").value;
           let description = document.getElementById("description").value;
