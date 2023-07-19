@@ -169,11 +169,13 @@
           name: name.value,
           email: email.value,
         };
+
+
         let ul = document.getElementById("users");
         let div = document.createElement("div");
         div.className = "delDiv";
         // div.innerHTML = `<li class="item">${myObj.name},${myObj.email}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><button onClick="deleteLocaltorage(event)" class="btnDel">,x</button><button onClick="editLocaltorage(event)" class="btnEdit">Edit</button></li>`;
-        div.innerHTML = `<li class="item">${myObj.name},${myObj.email}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></li>`;
+        div.innerHTML = `<li class="item">${myObj.name},${myObj.email}<input  onClick="deleteLocaltorage(event,'${myObj.name}','${myObj.email}')" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></li>`;
         ul.appendChild(div);
 
         let str_myObj = JSON.stringify(myObj);
@@ -190,15 +192,17 @@
       }
 
 
-      function deleteLocaltorage(event) {
+      function deleteLocaltorage(event,name,email) {
+
+        console.log(name)
         event.preventDefault();
         event.target.parentNode.remove();
         let text = event.target.parentNode.textContent
         let arr = text.split(",");
         let key = arr[1]
-        console.log(key)
+        // console.log(key)
 
-        localStorage.removeItem(key)
+        localStorage.removeItem(email)
         // if(email.value == )
 
        
