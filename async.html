@@ -122,38 +122,86 @@
 
     console.log("----promise.all----")
 
-    let goMovie = async () => {
-        let promiseWIfeBringTics = new Promise((res, rej) => {
-            setTimeout(() => {
-                res("ticket")
-            }, 3000)
+    // let goMovie = async () => {
+        
+    //     let promiseWIfeBringTics = new Promise((res, rej) => {
+    //         setTimeout(() => {
+    //             res("ticket")
+    //         }, 3000)
+    //     });
+
+    //     let ticket = await promiseWIfeBringTics;
+        
+    //     let getPopcorn = new Promise((res, rej) => {
+    //         res("Get popcorn")
+    //     })
+    //     let getcoke = new Promise((res, rej) => {
+    //         res("Get coke")
+    //     })
+    //     let getCandy = new Promise((res, rej) => {
+    //         res("Get candy")
+    //     })
+
+    //     let [popcorn,coke,candy] = await Promise.all([getPopcorn, getcoke, getCandy])
+        
+    //     console.log(`${popcorn}, ${coke}, ${candy}`)
+    //     return ticket
+    // }
+
+    // goMovie().then((t) => {
+    //     console.log(`Person3 : Show the ${t}`)
+    // })
+
+
+    // console.log('person4 : shows ticket')
+    // console.log('person5 : shows ticket') 
+
+    console.log("---old project--")
+
+
+    let post = async () =>{
+        let post=[]
+        let createPost = await new Promise((res,rej)=>{
+            setTimeout(()=>{
+                res(post.push("post1"))
+            })
+        })
+
+        let create2Post = await new Promise((res,rej)=>{
+            setTimeout(()=>{
+                res(post.push("post2"))
+            })
         });
 
-        let ticket = await promiseWIfeBringTics;
+        // function delete(){
+        // let del = () =>{
+            let delPost = await new Promise((res,rej)=>{
+                if(post.length>0){
+                    res(post.pop())
+                }else{
+                    rej("No post")
+                }
+            })
+    
+            // let delP = await delPost;
+        // }
 
-        let getPopcorn = new Promise((res, rej) => {
-            res("Get popcorn")
-        })
-        let getcoke = new Promise((res, rej) => {
-            res("Get coke")
-        })
-        let getCandy = new Promise((res, rej) => {
-            res("Get candy")
+        let create3Post = await new Promise((res,rej)=>{
+            setTimeout(()=>{
+                res(post.push("post3"))
+            })
         })
 
-        let [popcorn,coke,candy] = await Promise.all([getPopcorn, getcoke, getCandy])
         
-        console.log(`${popcorn}, ${coke}, ${candy}`)
-        return ticket
+
+
+        return post;
+
     }
 
-    goMovie().then((t) => {
-        console.log(`Person3 : Show the ${t}`)
+    post().then((m)=>{
+        console.log(m)
     })
-
-
-    console.log('person4 : shows ticket')
-    console.log('person5 : shows ticket') 
 </script>
 
 </html>
