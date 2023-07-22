@@ -104,7 +104,7 @@
 
     <div id="details" class="list">
         <!-- <ul id="ul" class="list-group my-2"> -->
-            <!-- <li class="listi list-group-item list-group-item-dark d-flex justify-content-between align-items-center">
+        <!-- <li class="listi list-group-item list-group-item-dark d-flex justify-content-between align-items-center">
             ${name}
             <span class="badge badge-primary badge-pill">14</span>
           </li>
@@ -137,6 +137,29 @@
 
 <script>
 
+    function getDetails() {
+        console.log("here")
+        axios.get('https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment')
+            .then((res) => {
+                showOutputOfGet(res.data);
+                console.log(res)
+            }).catch((err) => console.log(err))
+    }
+
+    // getDetails()
+
+    window.addEventListener('DOMContentLoaded',()=>{
+
+        axios.get('https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment')
+            .then((res) => {
+                console.log(res)
+                showOutputOfGet(res.data);
+            })
+            .catch((err) => console.log(err))
+    })
+
+   
+
 
     function consolevalue(event) {
         // console.log("here")
@@ -156,7 +179,7 @@
 
         axios.post("https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment", obj)
             .then((res) => {
-                showOutput(res.data),console.log(res)
+                showOutput(res.data), console.log(res)
             })
             .catch((err) => { console.log(err) })
 
@@ -166,14 +189,33 @@
         document.getElementById("phone").value = "";
     }
 
-
-    function showOutput(data){
+    // for post response
+    function showOutput(element) {
         let details = document.getElementById("details");
 
         let div = document.createElement("div")
-        div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+        div.innerHTML = `<div class="item">${element.name},${element.email},${element.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+        // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
 
         details.append(div)
+    }
+
+    // for get response
+    function showOutputOfGet(data) {
+
+        console.log(data[0].email)
+
+        let arr = data.forEach(element => {
+            console.log(element.email)
+
+            let details = document.getElementById("details");
+
+            let div = document.createElement("div")
+            div.innerHTML = `<div class="item">${element.name},${element.email},${element.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+            // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+
+            details.append(div)
+        });
     }
 
 </script>
