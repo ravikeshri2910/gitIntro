@@ -97,7 +97,7 @@
         </div>
 
         <button class="rat" type="submit" id="mouseover" onclick="consolevalue(event)">Submit</button>
-        <!-- <button class="rat" type="submit" id="mouseout" onclick="consolevalue(event)" >Mouse out</button> -->
+        <button class="rat" type="submit" id="update" onclick="updatePost(event)" >Update</button>
 
         <ul id="some"></ul>
     </form>
@@ -137,26 +137,28 @@
 
 <script>
 
+    let link = "https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment"
+
     function getDetails() {
-        console.log("here")
-        axios.get('https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment')
+        // console.log("here")
+        axios.get("https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment")
             .then((res) => {
                 showOutputOfGet(res.data);
-                console.log(res)
+                // console.log(res)
             }).catch((err) => console.log(err))
     }
 
-    // getDetails()
+    getDetails()
 
-    window.addEventListener('DOMContentLoaded',()=>{
+    // window.addEventListener('DOMContentLoaded',()=>{
 
-        axios.get('https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment')
-            .then((res) => {
-                console.log(res)
-                showOutputOfGet(res.data);
-            })
-            .catch((err) => console.log(err))
-    })
+    //     axios.get('https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment')
+    //         .then((res) => {
+    //             // console.log(res)
+    //             showOutputOfGet(res.data);
+    //         })
+    //         .catch((err) => console.log(err))
+    // })
 
    
 
@@ -168,7 +170,7 @@
         let name = document.getElementById("name").value;
         let email = document.getElementById("email").value;
         let phone = document.getElementById("phone").value;
-        console.log(name, email, phone);
+        // console.log(name, email, phone);
         // name.value = ""
 
         const obj = {
@@ -177,9 +179,9 @@
             phone: phone
         }
 
-        axios.post("https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment", obj)
+        axios.post("https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment", obj)
             .then((res) => {
-                showOutput(res.data), console.log(res)
+                showOutput(res.data)
             })
             .catch((err) => { console.log(err) })
 
@@ -191,10 +193,12 @@
 
     // for post response
     function showOutput(element) {
+
+
         let details = document.getElementById("details");
 
         let div = document.createElement("div")
-        div.innerHTML = `<div class="item">${element.name},${element.email},${element.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+        div.innerHTML = `<div class="item">${element.name},${element.email},${element.phone}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
         // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
 
         details.append(div)
@@ -203,21 +207,60 @@
     // for get response
     function showOutputOfGet(data) {
 
-        console.log(data[0].email)
+        // console.log(data[0].email)
+        let details = document.getElementById("details");
+        details.innerHTML = "";
 
         let arr = data.forEach(element => {
-            console.log(element.email)
-
-            let details = document.getElementById("details");
+            // console.log(element._id)
 
             let div = document.createElement("div")
-            div.innerHTML = `<div class="item">${element.name},${element.email},${element.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+            div.innerHTML = `<div class="item">${element.name},${element.email},${element.phone}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
             // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
 
             details.append(div)
         });
     }
 
-</script>
+    // deleting element form curd
+    function deleteLocaltorage(event,id){
+        event.preventDefault();
+        let site = `https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment/${id}`
+        // let site = `https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment/${id}`
+        axios.delete(site)
+        .then((res)=>{console.log('res'), getDetails()})
+        .catch((err)=>console.log(err))
+        // console.log(id)
+    }
+
+    // function editLocaltorage(event, id){
+    //     event.preventDefault();
+    //     let site = `https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment/${id}`
+    //     // let site = `https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment/${id}`
+    //     axios.get(site)
+    //     .then((res)=>{console.log(res.data.name), getContent(res.data,id)})
+    //     .catch((err)=>console.log(err))
+
+    // }
+
+    // function getContent(data,id){
+        
+    //     console.log(id)
+    //     document.getElementById("name").value = data.name;
+    //     document.getElementById("email").value = data.email;
+    //     document.getElementById("phone").value = data.phone;
+    //     // document.getElementById("mouseover").innerText = "Update";
+    // }
+
+    // function updatePost(event){
+    //     event.preventDefault();
+
+    //     let site = `https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment/${id}`
+
+    //     axios.put(site)
+    //     console.log("update")
+    // }
+
+</script> 
 
 </html>
