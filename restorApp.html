@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+    <title>Hello, world!</title>
+
+    <style>
+        #call {
+            display: flex;
+        }
+
+        form {
+            width: 40%;
+            padding: 1%;
+            border: 1px solid rgb(10, 179, 226);
+            /* margin-left: 30%; */
+
+            align-items: center;
+        }
+
+        h3 {
+            /* justify-content: center; */
+            text-align: center;
+            /* margin-left: 40%; */
+        }
+
+        p {
+            text-align: center;
+            /* margin-left: 15%; */
+        }
+
+        .rat {
+            background-color: rgb(10, 179, 226);
+            color: white;
+            width: 100%;
+            border: 3px solid white;
+            text-align: center;
+
+        }
+
+        .new {
+            background-color: rgb(10, 179, 226);
+            color: white;
+        }
+
+        .listi {
+            margin-bottom: 2px;
+        }
+
+        #details {
+            width: 40%;
+            /* border: 2px solid red; */
+            /* margin-left: 30%; */
+        }
+
+        .blue {
+            background-color: grey;
+        }
+
+       
+    </style>
+</head>
+
+<body>
+
+    <form>
+
+        <h3></i>Restro App</h3>
+        <p id="token"></p>
+
+        <hr>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Chosse price</label>
+            <input type="text" class="form-control" id="price" aria-describedby="emailHelp"
+                placeholder="Enter price here">
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <div class="form-group">
+            <label for="">Chosse Dise:</label>
+            <input type="text" class="form-control" id="dise" placeholder="Enter Dise here">
+        </div>
+
+        <div class="form-group">
+            <label>Choose Expense Amount </label>
+            <select class="form-control" id="table">
+                <option>Table 1</option>
+                <option>Table 2</option>
+                <option>Table 3</option>
+            </select>
+        </div>
+        <!-- <div class="form-group">
+            <label for="">Phone:</label>
+            <input type="number" class="form-control" id="phone" placeholder="Enter phone number here">
+        </div> -->
+
+
+        </div>
+
+        <button class="rat" type="submit" id="mouseover">Add To Table</button>
+        <!-- <button class="rat" type="submit" id="update" onclick="updatePost(event)">Update</button> -->
+
+        <ul id="some"></ul>
+    </form>
+
+    <div id="details" class="list">
+
+        <div id="table1">
+            <h4>Table 1</h4>
+            <div id="table1_order"></div>
+        </div>
+        <div id="table2">
+            <h4>Table 2</h4>
+            <div id="table2_order"></div>
+
+        </div>
+        <div id="table3">
+            <h4>Table 3</h4>
+            <div id="table3_order"></div>
+
+        </div>
+        <!-- <ul id="ul" class="list-group my-2"> -->
+        <!-- <li class="listi list-group-item list-group-item-dark d-flex justify-content-between align-items-center">
+            ${name}
+            <span class="badge badge-primary badge-pill">14</span>
+       
+         </ul> -->
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+<script>
+
+
+
+    function getPage() {
+
+        axios.get("https://crudcrud.com/api/55f17cedc2924a4b800d85342ddc0887/restroApp")
+            .then((res) => {
+                // console.log(res)
+                output(res.data)
+            })
+            .catch((err) => console.log(err))
+    }
+
+    getPage()
+
+
+    function output(data) {
+
+        let first = document.getElementById("table1_order");
+        first.innerHTML = ""
+        
+        const sec = document.getElementById("table2_order")
+        sec.innerHTML=""
+
+        const third = document.getElementById("table3_order")
+        third.innerHTML=""
+
+        data.forEach(element => {
+        
+            if (element.table == "Table 1") {
+
+                let div = document.createElement("div")
+                div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+                // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+
+                first.append(div)
+            }
+            else if (element.table == "Table 2") {
+
+
+                let div = document.createElement("div")
+                div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+                // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+
+                sec.append(div)
+            }
+            else if (element.table == "Table 3") {
+
+
+                let div = document.createElement("div")
+                div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+                // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+
+                third.append(div)
+            }
+        });
+
+    }
+
+
+    document.getElementById("mouseover").addEventListener("click", getDetails);
+
+    function getDetails(event) {
+        event.preventDefault();
+        let price = document.getElementById("price").value;
+        let dise = document.getElementById("dise").value;
+        let table = document.getElementById("table").value;
+        // console.log("here")
+        // console.log(price,dise,table)
+
+        let obj = {
+            price: price,
+            dise: dise,
+            table: table
+        }
+
+        axios.post("https://crudcrud.com/api/55f17cedc2924a4b800d85342ddc0887/restroApp", obj)
+            .then((res) => {
+                // console.log(res)
+                showDetails(res.data)
+                price.value = "";
+                dise.value = "";
+                table.value = ""
+            })
+            .catch((err) => console.log(err))
+    }
+
+    function showDetails(element) {
+
+        // console.log(element)
+        if (element.table == "Table 1") {
+            let first = document.getElementById("table1_order");
+
+            let div = document.createElement("div")
+            div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+            // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+
+            first.append(div)
+        }
+        else if (element.table == "Table 2") {
+
+            const sec = document.getElementById("table2_order")
+
+            let div = document.createElement("div")
+            div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+            // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+
+            sec.append(div)
+        }
+        else if (element.table == "Table 3") {
+
+            const third = document.getElementById("table3_order")
+
+            let div = document.createElement("div")
+            div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+            // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+
+            third.append(div)
+        }
+
+    }
+
+
+    function deleteLocaltorage(event,id){
+        event.preventDefault();
+        // console.log(id)
+        let site = `https://crudcrud.com/api/55f17cedc2924a4b800d85342ddc0887/restroApp/${id}`
+        axios.delete(site)
+        .then((res)=>{getPage()})
+        .catch((err) => console.log(err))
+    }
+</script>
+
+
+</html>

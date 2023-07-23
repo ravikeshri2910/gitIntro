@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <title>Hello, world!</title>
+
+    <style>
+      /* body{
+        justify-content: center;
+
+      } */
+
+        #call{
+            display: flex;
+        }
+      form {
+        width: 40%;
+        padding: 1%;
+        border: 1px solid orange;
+        margin-left: 30%;
+
+        align-items: center;
+      }
+      h3 {
+        /* justify-content: center; */
+        text-align: center;
+       /* margin-left: 40%; */
+    }
+    p{
+        text-align: center;
+        /* margin-left: 15%; */
+      }
+
+      .rat{
+        background-color: orange;
+        color: white;
+        width: 100%;
+        border: 3px solid white;
+        text-align: center;
+
+      }
+      .new{
+        background-color: orange;
+        color: white;
+      }
+      .listi{
+        margin-bottom: 2px;
+      }
+      #details{
+        width: 40%;
+        margin-left: 30%;
+      }
+
+      .blue{
+        background-color: grey;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <form>
+
+        <h3></i>Book a call</h3>
+      <p>Book a slot and someone call you back</p>
+      <hr>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name:</label>
+          <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name here">
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <div class="form-group">
+          <label for="">Email:</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter email here">
+        </div>
+        <div class="form-group">
+            <label for="">Phone:</label>
+            <input type="number" class="form-control" id="phone" placeholder="Enter phone number here">
+          </div>
+          <div class="form-group" >
+            <label for="">Time for call:</label><br>
+            <div id="call">
+            <input type="date" class="form-control col-sm-6 " id="date" placeholder="Enter phone number here">
+            <input type="time" class="form-control col-sm-6 " id="time" placeholder="Enter phone number here">
+        </div>
+
+      </div>
+      
+      <button class="rat" type="submit" id="mouseover" onclick="consolevalue(event)">Mouse over</button>
+      <button class="rat" type="submit" id="mouseout" onclick="consolevalue(event)" >Mouse out</button>
+     
+      <ul id="some"></ul>
+      </form>
+
+      <div id="details" class="list">
+        <ul id="ul" class="list-group my-2">
+          <!-- <li class="listi list-group-item list-group-item-dark d-flex justify-content-between align-items-center">
+            ${name}
+            <span class="badge badge-primary badge-pill">14</span>
+          </li>
+          <li class="listi list-group-item list-group-item-dark d-flex justify-content-between align-items-center">
+            Dapibus ac facilisis in
+            <span class="badge badge-primary badge-pill">2</span>
+          </li>
+          <li class="listi list-group-item list-group-item-dark d-flex justify-content-between align-items-center">
+            Morbi leo risus
+            <span class="badge badge-primary badge-pill">1</span>
+          </li> -->
+        </ul>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+
+  <script>
+
+// object.addEventListener("mouseover", myScript);
+let over = document.getElementById("mouseover")
+over.addEventListener("mouseover", colorChange)
+over.addEventListener("mouseout", color)
+
+
+function colorChange(){
+   over.style.background="green"
+   over.style.color = "black"
+}
+function color(){
+  
+   over.style.background="orange"
+   over.style.color = "white"
+}
+// let out = document.getElementById("mouseout")
+// out.addEventListener("mouseout", colorChange1)
+// out.addEventListener("mouseover", color1)
+
+
+// function colorChange1(){
+//    out.style.background="green"
+//    out.style.color = "black"
+// }
+// function color1(){
+//  out.style.background="orange"
+//    out.style.color = "white"
+// }
+
+
+    function consolevalue(event) {
+      // console.log("here")
+      event.preventDefault();
+
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let phone = document.getElementById("phone").value;
+      let date = document.getElementById("date").value;
+      let time = document.getElementById("time").value;
+      console.log(name, email, phone, date, time);
+      // name.value = ""
+      
+      let t = time!=""? time:"Enter Time";
+      if(name!=""){
+
+      let ul=document.getElementById("ul")
+      // let li = document.createElement("li")
+      let li = document.createElement("li")
+      // li.classList.add("list-group-item-dark")
+      
+      li.innerHTML=` <li class="listi list-group-item list-group-item-dark d-flex justify-content-between align-items-center">${name}:${email}
+        <span class="badge badge-primary badge-pill">${t}</span>
+        </li>`
+        // li.appendChild(document.createTextNode(
+        //   `${name} : ${email}`
+        // ))
+        // li.appendChild(sub)   
+        ul.appendChild(li)
+      }else{
+        alert("Fill the form First")
+      }
+        // name.innerHtml=""
+      document.getElementById("name").value=""
+      document.getElementById("email").value=""
+      document.getElementById("phone").value=""
+      document.getElementById("date").value=""
+      document.getElementById("time").value=""
+
+
+      
+    }
+  
+  </script>
+</html>
