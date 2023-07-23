@@ -76,6 +76,7 @@
     <form>
 
         <h3></i>CRUD App</h3>
+        <p id="token"></p>
 
         <hr>
         <div class="form-group">
@@ -97,7 +98,7 @@
         </div>
 
         <button class="rat" type="submit" id="mouseover" onclick="consolevalue(event)">Submit</button>
-        <button class="rat" type="submit" id="update" onclick="updatePost(event)" >Update</button>
+        <button class="rat" type="submit" id="update" onclick="updatePost(event)">Update</button>
 
         <ul id="some"></ul>
     </form>
@@ -160,7 +161,7 @@
     //         .catch((err) => console.log(err))
     // })
 
-   
+
 
 
     function consolevalue(event) {
@@ -223,44 +224,73 @@
     }
 
     // deleting element form curd
-    function deleteLocaltorage(event,id){
+    function deleteLocaltorage(event, id) {
         event.preventDefault();
         let site = `https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment/${id}`
         // let site = `https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment/${id}`
         axios.delete(site)
-        .then((res)=>{console.log('res'), getDetails()})
-        .catch((err)=>console.log(err))
+            .then((res) => { console.log('res'), getDetails() })
+            .catch((err) => console.log(err))
         // console.log(id)
     }
 
-    // function editLocaltorage(event, id){
-    //     event.preventDefault();
-    //     let site = `https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment/${id}`
-    //     // let site = `https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment/${id}`
-    //     axios.get(site)
-    //     .then((res)=>{console.log(res.data.name), getContent(res.data,id)})
-    //     .catch((err)=>console.log(err))
+    function editLocaltorage(event, id) {
+        event.preventDefault();
+        let site = `https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment/${id}`
+        // let site = `https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment/${id}`
+        axios.get(site)
+            .then((res) => { console.log(res.data.name), getContent(res.data, id) })
+            .catch((err) => console.log(err))
 
-    // }
+    }
 
-    // function getContent(data,id){
-        
-    //     console.log(id)
-    //     document.getElementById("name").value = data.name;
-    //     document.getElementById("email").value = data.email;
-    //     document.getElementById("phone").value = data.phone;
-    //     // document.getElementById("mouseover").innerText = "Update";
-    // }
 
-    // function updatePost(event){
-    //     event.preventDefault();
 
-    //     let site = `https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment/${id}`
+    function getContent(data, id) {
+        localStorage.setItem("key",id)
+        // console.log(id)
+        document.getElementById("name").value = data.name;
+        document.getElementById("email").value = data.email;
+        document.getElementById("phone").value = data.phone;
+        // document.getElementById("token").innerText = id;
+        // document.getElementById("mouseover").innerText = "Update";
 
-    //     axios.put(site)
-    //     console.log("update")
-    // }
+        // return id
+    }
 
-</script> 
+    // let putId=getContent(data,id)
+    // console.log(putId)
+
+
+    function updatePost(event) {
+        event.preventDefault();
+
+        let id = localStorage.getItem('key')
+        console.log(id)
+
+
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let phone = document.getElementById("phone").value;
+
+        // // console.log("here")
+        let site = `https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment/${id}`
+
+        axios.put(site, {
+
+            name: name,
+            email: email,
+            phone: phone
+
+        }).then((res) => {
+            console.log(res)
+            getDetails()
+            localStorage.removeItem("key")
+            // showOutput(res)
+        }).catch((err) => console.log(err))
+        console.log("update")
+    }
+
+</script>
 
 </html>
