@@ -183,13 +183,13 @@
         axios.post("https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment", obj)
             .then((res) => {
                 showOutput(res.data)
+                document.getElementById("name").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("phone").value = "";
             })
             .catch((err) => { console.log(err) })
 
 
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("phone").value = "";
     }
 
     // for post response
@@ -199,7 +199,7 @@
         let details = document.getElementById("details");
 
         let div = document.createElement("div")
-        div.innerHTML = `<div class="item">${element.name},${element.email},${element.phone}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+        div.innerHTML = `<div class="item">${element.name}-${element.email}-${element.phone}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
         // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
 
         details.append(div)
@@ -216,7 +216,7 @@
             // console.log(element._id)
 
             let div = document.createElement("div")
-            div.innerHTML = `<div class="item">${element.name},${element.email},${element.phone}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+            div.innerHTML = `<div class="item">${element.name}-${element.email}-${element.phone}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
             // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
 
             details.append(div)
@@ -247,15 +247,12 @@
 
 
     function getContent(data, id) {
-        localStorage.setItem("key",id)
+        localStorage.setItem("key", id)
         // console.log(id)
         document.getElementById("name").value = data.name;
         document.getElementById("email").value = data.email;
         document.getElementById("phone").value = data.phone;
-        // document.getElementById("token").innerText = id;
-        // document.getElementById("mouseover").innerText = "Update";
 
-        // return id
     }
 
     // let putId=getContent(data,id)
@@ -283,9 +280,12 @@
             phone: phone
 
         }).then((res) => {
-            console.log(res)
+            // console.log(res)
             getDetails()
             localStorage.removeItem("key")
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("phone").value = "";
             // showOutput(res)
         }).catch((err) => console.log(err))
         console.log("update")
