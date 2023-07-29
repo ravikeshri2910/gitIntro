@@ -67,7 +67,7 @@
 
         #contain {
             display: flex;
-            border: 10px solid green;
+            /* border: 10px solid green; */
         }
 
         #firstbox {
@@ -94,19 +94,19 @@
 
                 <hr>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Enter price</label>
+                    <label for="exampleInputEmail1">Enter Name</label>
                     <input type="text" class="form-control" id="price" aria-describedby="emailHelp"
-                        placeholder="Enter price here">
+                        placeholder="Enter name here">
                     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                 </div>
                 <div class="form-group">
-                    <label for="">Chosse Dise:</label>
-                    <input type="text" class="form-control" id="dise" placeholder="Enter Dise here">
+                    <label for="">Chosse price:</label>
+                    <input type="text" class="form-control" id="dise" placeholder="Enter price here">
                 </div>
 
                 <div class="form-group">
                     <label>Choose Expense Amount </label>
-                    <select class="form-control" id="table">
+                    <select class="form-control" id="table" placeholder="Choose table here" aria-placeholder="Choose table here">
                         <option>Table 1</option>
                         <option>Table 2</option>
                         <option>Table 3</option>
@@ -120,7 +120,7 @@
 
         <div id="secbox">
             <div id="details" class="list">
-
+                <h2>Orders</h2>
                 <div id="table1">
                     <h4>Table 1</h4>
                     <div id="table1_order"></div>
@@ -170,10 +170,7 @@
 
     async function getPage() {
         try {
-            const res = await axios.get("https://crudcrud.com/api/7b3e7e84ec0842de9eb3855b61f84d58/restroApp")
-            // .then((res) => {
-            // console.log(res)
-            // })
+            const res = await axios.get("https://crudcrud.com/api/0fb35330993c4b00aea07e4380c373cd/restroApp")
             output(res.data)
         } catch (err) { console.log(err) }
     }
@@ -198,7 +195,7 @@
 
                 let div = document.createElement("div")
                 div.innerHTML = `<li class="item">${element.price}-${element.dise}  <input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /> </li>`;
-                // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+              
 
                 first.append(div)
             }
@@ -207,8 +204,7 @@
 
                 let div = document.createElement("div")
                 div.innerHTML = `<li class="item">${element.price}-${element.dise}  <input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /> </li>`;
-                // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
-
+              
                 sec.append(div)
             }
             else if (element.table == "Table 3") {
@@ -216,8 +212,7 @@
 
                 let div = document.createElement("div")
                 div.innerHTML = `<li class="item">${element.price}-${element.dise}  <input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /> </li>`;
-                // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
-
+              
                 third.append(div)
             }
         });
@@ -239,12 +234,16 @@
 
             let obj = {
                 price: price,
-                dise: dise,
+                dise: "Rs "+dise,
                 table: table
             }
 
-            const res = await axios.post("https://crudcrud.com/api/7b3e7e84ec0842de9eb3855b61f84d58/restroApp", obj)
+            const res = await axios.post("https://crudcrud.com/api/0fb35330993c4b00aea07e4380c373cd/restroApp", obj)
             showDetails(res.data)
+            document.getElementById("price").value = ""
+            document.getElementById("dise").value = ""
+            // document.getElementById("table").value = "Choose table here"
+          
         } catch (err) {
             console.log(err)
         }
@@ -287,7 +286,7 @@
         try {
             event.preventDefault();
             // console.log(id)
-            let site = `https://crudcrud.com/api/7b3e7e84ec0842de9eb3855b61f84d58/restroApp/${id}`
+            let site = `https://crudcrud.com/api/0fb35330993c4b00aea07e4380c373cd/restroApp/${id}`
             await axios.delete(site)
             getPage()
         } catch (err) {
