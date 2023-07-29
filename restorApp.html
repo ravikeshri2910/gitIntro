@@ -18,7 +18,7 @@
         }
 
         form {
-            width: 40%;
+            width: 30%;
             padding: 1%;
             border: 1px solid rgb(10, 179, 226);
             /* margin-left: 30%; */
@@ -58,14 +58,12 @@
         #details {
             width: 40%;
             /* border: 2px solid red; */
-            /* margin-left: 30%; */
+            margin-left: 5%;
         }
 
         .blue {
             background-color: grey;
         }
-
-       
     </style>
 </head>
 
@@ -78,7 +76,7 @@
 
         <hr>
         <div class="form-group">
-            <label for="exampleInputEmail1">Chosse price</label>
+            <label for="exampleInputEmail1">Enter price</label>
             <input type="text" class="form-control" id="price" aria-describedby="emailHelp"
                 placeholder="Enter price here">
             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
@@ -96,12 +94,6 @@
                 <option>Table 3</option>
             </select>
         </div>
-        <!-- <div class="form-group">
-            <label for="">Phone:</label>
-            <input type="number" class="form-control" id="phone" placeholder="Enter phone number here">
-        </div> -->
-
-
         </div>
 
         <button class="rat" type="submit" id="mouseover">Add To Table</button>
@@ -170,19 +162,19 @@
 
         let first = document.getElementById("table1_order");
         first.innerHTML = ""
-        
+
         const sec = document.getElementById("table2_order")
-        sec.innerHTML=""
+        sec.innerHTML = ""
 
         const third = document.getElementById("table3_order")
-        third.innerHTML=""
+        third.innerHTML = ""
 
         data.forEach(element => {
-        
+
             if (element.table == "Table 1") {
 
                 let div = document.createElement("div")
-                div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+                div.innerHTML = `<li class="item">${element.price}-${element.dise}  <input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></li>`;
                 // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
 
                 first.append(div)
@@ -191,7 +183,7 @@
 
 
                 let div = document.createElement("div")
-                div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+                div.innerHTML = `<li class="item">${element.price}-${element.dise}  <input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></li>`;
                 // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
 
                 sec.append(div)
@@ -200,7 +192,7 @@
 
 
                 let div = document.createElement("div")
-                div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+                div.innerHTML = `<li class="item">${element.price}-${element.dise}  <input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></li>`;
                 // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
 
                 third.append(div)
@@ -244,8 +236,7 @@
             let first = document.getElementById("table1_order");
 
             let div = document.createElement("div")
-            div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
-            // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+            div.innerHTML = `<li class="item">${element.price}-${element.dise}  <input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></li>`;
 
             first.append(div)
         }
@@ -254,8 +245,7 @@
             const sec = document.getElementById("table2_order")
 
             let div = document.createElement("div")
-            div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
-            // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+            div.innerHTML = `<li class="item">${element.price}-${element.dise}  <input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></li>`;
 
             sec.append(div)
         }
@@ -264,8 +254,7 @@
             const third = document.getElementById("table3_order")
 
             let div = document.createElement("div")
-            div.innerHTML = `<div class="item">${element.price}-${element.dise}-${element.table}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
-            // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+            div.innerHTML = `<li class="item">${element.price}-${element.dise}  <input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></li>`;
 
             third.append(div)
         }
@@ -273,13 +262,13 @@
     }
 
 
-    function deleteLocaltorage(event,id){
+    function deleteLocaltorage(event, id) {
         event.preventDefault();
         // console.log(id)
         let site = `https://crudcrud.com/api/55f17cedc2924a4b800d85342ddc0887/restroApp/${id}`
         axios.delete(site)
-        .then((res)=>{getPage()})
-        .catch((err) => console.log(err))
+            .then((res) => { getPage() })
+            .catch((err) => console.log(err))
     }
 </script>
 

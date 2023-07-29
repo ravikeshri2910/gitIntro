@@ -138,11 +138,11 @@
 
 <script>
 
-    let link = "https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment"
+    let link = "https://crudcrud.com/api/55f17cedc2924a4b800d85342ddc0887/callAppointment"
 
     function getDetails() {
         // console.log("here")
-        axios.get("https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment")
+        axios.get("https://crudcrud.com/api/55f17cedc2924a4b800d85342ddc0887/callAppointment")
             .then((res) => {
                 showOutputOfGet(res.data);
                 // console.log(res)
@@ -180,7 +180,7 @@
             phone: phone
         }
 
-        axios.post("https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment", obj)
+        axios.post("https://crudcrud.com/api/55f17cedc2924a4b800d85342ddc0887/callAppointment", obj)
             .then((res) => {
                 showOutput(res.data)
                 document.getElementById("name").value = "";
@@ -199,7 +199,9 @@
         let details = document.getElementById("details");
 
         let div = document.createElement("div")
+
         div.innerHTML = `<div class="item">${element.name}-${element.email}-${element.phone}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+
         // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
 
         details.append(div)
@@ -216,7 +218,9 @@
             // console.log(element._id)
 
             let div = document.createElement("div")
+
             div.innerHTML = `<div class="item">${element.name}-${element.email}-${element.phone}<input  onClick="deleteLocaltorage(event,'${element._id}')" id="submit" class="btnDel" type="submit" value="Delete" /><input  onClick="editLocaltorage(event,'${element._id}')" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
+
             // div.innerHTML = `<div class="item">${data.name},${data.email},${data.phone}<input  onClick="deleteLocaltorage(event)" id="submit" class="btnDel" type="submit" value="x" /><input  onClick="editLocaltorage(event)" id="submit" class="btnEdit" type="submit" value="Edit" /></div>`;
 
             details.append(div)
@@ -226,7 +230,7 @@
     // deleting element form curd
     function deleteLocaltorage(event, id) {
         event.preventDefault();
-        let site = `https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment/${id}`
+        let site = `https://crudcrud.com/api/55f17cedc2924a4b800d85342ddc0887/callAppointment/${id}`
         // let site = `https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment/${id}`
         axios.delete(site)
             .then((res) => { console.log('res'), getDetails() })
@@ -236,7 +240,7 @@
 
     function editLocaltorage(event, id) {
         event.preventDefault();
-        let site = `https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment/${id}`
+        let site = `https://crudcrud.com/api/55f17cedc2924a4b800d85342ddc0887/callAppointment/${id}`
         // let site = `https://crudcrud.com/api/cf124f3ac0754673bc2c4c22bc459386/callAppointment/${id}`
         axios.get(site)
             .then((res) => { console.log(res.data.name), getContent(res.data, id) })
@@ -271,7 +275,7 @@
         let phone = document.getElementById("phone").value;
 
         // // console.log("here")
-        let site = `https://crudcrud.com/api/455512cf1c114798824b8061092bea8b/callAppointment/${id}`
+        let site = `https://crudcrud.com/api/55f17cedc2924a4b800d85342ddc0887/callAppointment/${id}`
 
         axios.put(site, {
 
