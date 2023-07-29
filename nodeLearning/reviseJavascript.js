@@ -3,7 +3,7 @@ const multiply = (a,b) => {
     return a*b
 }
 
-console.log(multiply(5,2))
+// console.log(multiply(5,2))
 
 
 const student = {
@@ -17,8 +17,8 @@ const student = {
 
 }
 
-console.log(student.age)
-console.log(student.passed())
+// console.log(student.age)
+// console.log(student.passed())
 
 // Using map in the function
 let arr = ['apple', 'oranges' , ' ', 'mango', ' ' , 'lemon']
@@ -34,3 +34,29 @@ let newArr = arr.map((fruits)=>{
 
 console.log(newArr)
 console.log(arr)
+
+
+// Using Async and await
+console.log("a");
+console.log("b");
+async function print(){
+
+    await new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(console.log('c'))
+
+        },3000)
+    })
+    await new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(console.log('d'))
+
+        },0)
+    })
+
+    return 'e'
+}
+
+print().then((m)=>{
+    console.log(m)
+})
