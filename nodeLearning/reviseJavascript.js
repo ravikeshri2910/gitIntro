@@ -19,3 +19,18 @@ const student = {
 
 console.log(student.age)
 console.log(student.passed())
+
+// Using map in the function
+let arr = ['apple', 'oranges' , ' ', 'mango', ' ' , 'lemon']
+
+let newArr = arr.map((fruits)=>{
+    // console.log(fruits)
+    if(fruits == " "){
+       return fruits = "empty string"
+    }else{
+        return fruits
+    }
+})
+
+console.log(newArr)
+console.log(arr)
