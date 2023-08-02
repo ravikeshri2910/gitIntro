@@ -2,19 +2,10 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const fs = require("fs");
 
-{/* <form onsubmit="localStorage.setItem(`username`, document.getElementById(`username`).value)" action="/product" method="POST">
-
-	<input id="username" type="text" name"title">
-
-	<button type="submit">add</button> */}
-
-// </form>
-
-//<form onSubmit="localStorage.setItem("username", (document.getElementById('username').value))" action="/logedin" method="POST">
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.urlencoded())
+
 
 
 app.get("/login", (req, res, next) => {
@@ -31,15 +22,10 @@ app.get("/login", (req, res, next) => {
 
 })
 
-function add(){
-    let user = document.getElementById('username').value;
-    localStorage.setItem('username',user)
-}
 
 
 
 
-// document.getElementById("username").value
 
 app.post("/logedin", (req, res) => {
     
@@ -69,7 +55,7 @@ app.get("/", (req, res) => {
         </body>`);
     })
     
-    // let text = req.body.title;
+   
    
 
 
