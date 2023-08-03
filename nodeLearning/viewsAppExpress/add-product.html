@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Products</title>
+    <link rel="stylesheet" href="/css/expressCss.css">
+</head>
+
+<body>
+
+    <nav>
+        
+        <a href="/shop"><h3>Shop</h3></a>
+        <a href="/admin/app-product"><h3>Add Product</h3></a>
+        <a href="/contactUs"><h3>Contact us</h3></a>
+    </nav>
+    <form action="/admin/product" method="POST">
+        <label>Title:-</label>
+        <input type="text" name="title">
+        <br>
+        <label>Size:-</label>
+        <input type="number" name="size">
+        <button type="submit">send</button>
+    </form>
+</body>
+</html>
