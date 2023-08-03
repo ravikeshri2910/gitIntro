@@ -9,6 +9,7 @@ const shopRoute = require('./routesAppExpress/shop')
 const contactRoute = require('./routesAppExpress/contact')
 const sucessRoute = require('./routesAppExpress/succes')
 
+const productsController = require('./controllers/product')
 const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,9 +20,7 @@ app.use('/shop',shopRoute);
 app.use(contactRoute);
 app.use(sucessRoute);
 
-app.use((req, res, next) =>{
-    res.status(404).sendFile(path.join(__dirname, 'viewsAppExpress', 'invalidPage.html'))
-})
+app.use(productsController.invalid)
 
 app.listen(4000);
 // const server = http.createServer(app)

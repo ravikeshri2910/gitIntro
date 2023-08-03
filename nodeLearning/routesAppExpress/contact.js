@@ -3,8 +3,8 @@ const route = express.Router();
 
 const path = require('path');
 
-route.get("/contactUs",(req, res)=>{
-    res.sendFile(path.join(__dirname,'..','viewsAppExpress','contact.html'))
-})
+const productsController = require("../controllers/product")
+
+route.get("/contactUs",productsController.contactus)
 
 module.exports = route;
