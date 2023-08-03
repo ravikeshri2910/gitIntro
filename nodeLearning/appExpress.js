@@ -9,7 +9,7 @@ const shopRoute = require('./routesAppExpress/shop')
 const contactRoute = require('./routesAppExpress/contact')
 const sucessRoute = require('./routesAppExpress/succes')
 
-const productsController = require('./controllers/product')
+const productsController = require('./controllers/products')
 const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,8 +23,7 @@ app.use(sucessRoute);
 app.use(productsController.invalid)
 
 app.listen(4000);
-// const server = http.createServer(app)
-// server.listen(3000);
+
 
 // app.use((req, res, next)=>{
 //     console.log("In first")

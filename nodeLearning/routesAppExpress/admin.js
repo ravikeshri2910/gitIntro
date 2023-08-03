@@ -2,7 +2,7 @@
 const path = require('path');
 const express = require('express');
 
-const productsController = require('../controllers/product')
+const productsController = require('../controllers/products')
 const route = express.Router();
 
 
@@ -10,9 +10,6 @@ const route = express.Router();
 route.get("/app-product",productsController.appProduct)
 
 // /admin/app-product => POST
-route.post("/product",(req, res, next)=>{
-    console.log(req.body)
-    res.redirect('/shop')
-})
+route.post("/product",productsController.postAppProduct)
 
 module.exports = route;
